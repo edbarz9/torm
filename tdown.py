@@ -53,7 +53,7 @@ for t in torrentlist:
 
 arg = ""
 for k in resultlist.keys():
-    arg = arg + k + "/n"
+    arg = arg + k + "\n"
 
 x = subprocess.check_output('printf "'+arg+'"|dmenu', shell=True)
 x = str(x).replace("b'","").replace("\\n'","")
