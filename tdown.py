@@ -40,7 +40,7 @@ torrentlist = torrentpage.find_all('td')
 
 for t in torrentlist:
     try:
-        name = t.find('div',{'class':'detName'})
+        name = t.find('div',{'class':'detName'}).text.strip()
         magnet = t.find('a',{'title':'Download this torrent using magnet'})
         print(name)
         print(magnet)
