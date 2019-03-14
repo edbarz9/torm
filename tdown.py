@@ -38,12 +38,15 @@ soup = soupMaker(qurl)
 torrentpage = soup.find('table',{'id':'searchResult'})
 torrentlist = torrentpage.find_all('td')
 
+resultlist=[]
+
 for t in torrentlist:
     try:
         name = t.find('div',{'class':'detName'}).text.strip()
         magnet = t.find('a',{'title':'Download this torrent using magnet'}).get('href')
         print(name)
         print(magnet)
+        resultlist[name] = magnet
     except:
         pass
 
