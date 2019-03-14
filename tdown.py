@@ -45,8 +45,8 @@ for t in torrentlist:
     try:
         name = t.find('div',{'class':'detName'}).text.strip()
         magnet = t.find('a',{'title':'Download this torrent using magnet'}).get('href')
-        print(name)
-        print(magnet)
+        #print(name)
+        #print(magnet)
         resultlist[name] = magnet
     except:
         pass
@@ -58,7 +58,8 @@ for k in resultlist.keys():
 x = subprocess.check_output('printf "'+arg+'"|dmenu', shell=True)
 x = str(x).replace("b'","").replace("\\n'","")
 print(x)
-#print(soup)
+magnet = resultlist[x]
+print(magnet)
 
 #os.system(torrentClient + " " + magnet)
 
