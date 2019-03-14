@@ -41,7 +41,7 @@ torrentlist = torrentpage.find_all('td')
 for t in torrentlist:
     try:
         name = t.find('div',{'class':'detName'}).text.strip()
-        magnet = t.find('a',{'title':'Download this torrent using magnet'})
+        magnet = t.find('a',{'title':'Download this torrent using magnet'}).get('href')
         print(name)
         print(magnet)
     except:
