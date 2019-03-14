@@ -38,7 +38,7 @@ soup = soupMaker(qurl)
 torrentpage = soup.find('table',{'id':'searchResult'})
 torrentlist = torrentpage.find_all('td')
 
-resultlist=[]
+resultlist={}
 
 for t in torrentlist:
     try:
@@ -50,6 +50,13 @@ for t in torrentlist:
     except:
         pass
 
+arg = ""
+for k in resultlist.keys():
+    arg = arg + k + "/n"
+
+x = subprocess.check_output('printf "'+arg+'"|dmenu', shell=True)
+x = str(x).replace("b'","").replace("\\n'","")
+print(x)
 #print(soup)
 
 #os.system(torrentClient + " " + magnet)
