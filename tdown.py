@@ -61,6 +61,6 @@ print(x)
 magnet = resultlist[x]
 print(magnet)
 
-#os.system(torrentClient + " " + magnet)
+os.system(torrentClient + " " + magnet)
 
 
