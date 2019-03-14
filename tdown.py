@@ -35,9 +35,19 @@ qurl = piratebay + query
 
 soup = soupMaker(qurl)
 
-#torrentlist = soup.find('tbody')
+torrentpage = soup.find('table',{'id':'searchResult'})
+torrentlist = torrentpage.find_all('td')
 
-print(soup)
+for t in torrentlist:
+    try:
+        name = t.find('div',{'class':'detName'})
+        magnet = t.find('a',{'title':'Download this torrent using magnet'})
+        print(name)
+        print(magnet)
+    except:
+        pass
+
+#print(soup)
 
 #os.system(torrentClient + " " + magnet)
 
