@@ -27,6 +27,10 @@ def parseQuery():
     query = query + sys.argv[i+2]
     return query
 
+dq = subprocess.check_output('echo "looking for torrent?" | dmenu', shell=True)
+dq = str(dq).replace("b'","").replace("\\n'","")
+
+#query = dq
 query = parseQuery()
 
 #print(query)
@@ -55,10 +59,10 @@ arg = ""
 for k in resultlist.keys():
     arg = arg + k + "\n"
 
-x = subprocess.check_output('printf "'+arg+'"|dmenu', shell=True)
-x = str(x).replace("b'","").replace("\\n'","")
-print(x)
-magnet = resultlist[x]
+dmr = subprocess.check_output('printf "'+arg+'"|dmenu', shell=True)
+dmr = str(dmr).replace("b'","").replace("\\n'","")
+print(dmr)
+magnet = resultlist[dmr]
 print(magnet)
 
 os.system(torrentClient + " " + magnet)
