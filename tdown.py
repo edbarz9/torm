@@ -19,22 +19,22 @@ def soupMaker(url):
     soup = bsoup(html_page,"html.parser")
     return soup
 
-def parseQuery():
+def parseQuery(q):
     query = ""
-    i = -1
-    for i in range(len(sys.argv) - 2):
-        query = query + sys.argv[i+1] + "%20"
+    for i in q.split():
+        query = query + i + "%20"
 
-    query = query + sys.argv[i+2]
+    query = query[:-3]
     return query
 
 dq = subprocess.check_output('echo "looking for torrent?" | dmenu', shell=True)
 dq = str(dq).replace("b'","").replace("\\n'","")
 
-query = dq
+query = parseQuery(dq)
 
 qurl = piratebay + query
 
+print(qurl)
 soup = soupMaker(qurl)
 
 torrentpage = soup.find('table',{'id':'searchResult'})
