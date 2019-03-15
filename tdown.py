@@ -32,12 +32,8 @@ dq = subprocess.check_output('echo "looking for torrent?" | dmenu', shell=True)
 dq = str(dq).replace("b'","").replace("\\n'","")
 
 query = dq
-#query = parseQuery()
 
-#print(query)
 qurl = piratebay + query
-#print(qurl)
-#print(type(qurl))
 
 soup = soupMaker(qurl)
 
@@ -50,8 +46,6 @@ for t in torrentlist:
     try:
         name = t.find('div',{'class':'detName'}).text.strip()
         magnet = t.find('a',{'title':'Download this torrent using magnet'}).get('href')
-        #print(name)
-        #print(magnet)
         resultlist[name] = magnet
     except:
         pass
@@ -62,9 +56,7 @@ for k in resultlist.keys():
 
 dmr = subprocess.check_output('printf "'+arg+'"|dmenu', shell=True)
 dmr = str(dmr).replace("b'","").replace("\\n'","")
-print(dmr)
 magnet = resultlist[dmr]
-print(magnet)
 
 os.system(torrentClient + " " + magnet)
 
