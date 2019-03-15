@@ -30,8 +30,8 @@ def parseQuery():
 dq = subprocess.check_output('echo "looking for torrent?" | dmenu', shell=True)
 dq = str(dq).replace("b'","").replace("\\n'","")
 
-#query = dq
-query = parseQuery()
+query = dq
+#query = parseQuery()
 
 #print(query)
 qurl = piratebay + query
